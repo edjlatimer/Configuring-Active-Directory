@@ -1,64 +1,105 @@
+# 🖥️ Active Directory Deployment in Azure  
+
 <p align="center">
-<img src="https://i.imgur.com/pU5A58S.png" alt="Microsoft Active Directory Logo"/>
-</p>
+  <img src="https://i.imgur.com/pU5A58S.png" alt="Active Directory Logo" width="300"/>
+</p>  
 
-<h1>Preparing Active Directory Infrastructure in (Azure)</h1>
-This repository demonstrates the implementation of an on-premises-style Active Directory infrastructure within Azure Virtual Machines (VMs). The steps outline the process of creating a Domain Controller (DC) and a client machine, establishing connectivity, and configuring the necessary network and DNS settings for Active Directory Domain Services.<br />
+## 📌 Overview  
+This project demonstrates how to deploy and configure an **Active Directory environment** in Microsoft Azure.  
+The setup includes:  
+- A **Domain Controller** (Windows Server 2022)  
+- A **Client Machine** (Windows 10)  
+- Proper **network, DNS, and connectivity settings** to enable AD functionality  
 
+---
 
-<h2>Environments and Technologies Used</h2>
+## 🛠️ Technologies Used  
+- **Microsoft Azure** (Resource Groups, Virtual Networks, Virtual Machines)  
+- **Windows Server 2022** (Domain Controller)  
+- **Windows 10 (21H2)** (Client Machine)  
+- **Active Directory Domain Services (AD DS)**  
+- **PowerShell** & **Remote Desktop**  
 
-- Microsoft Azure (Virtual Machines/Compute)
-- Remote Desktop
-- Active Directory Domain Services
-- PowerShell
+---
 
-<h2>Operating Systems Used </h2>
+## ⚙️ Step-by-Step Implementation  
 
-- Windows Server 2022
-- Windows 10 (21H2)
+### 🔹 1. Create Resource Group & Virtual Network  
+**Execution:**  
+- Log into the [Azure Portal](https://portal.azure.com/).  
+- Create a **Resource Group**:  
+  - Search for *Resource Groups* → Click **Create** → Enter name (e.g., `AD-Lab`).  
+- Create a **Virtual Network (VNet)**:  
+  - Search for *Virtual Networks* → Click **Create** → Choose the `AD-Lab` resource group.  
+  - Name it `AD-VNet`.  
+  - Create a **subnet** (e.g., `AD-Subnet`).  
 
-<h2>Steps in Creating Resource Group, Virtual Network, and Virtual Machines</h2>
+📸 Screenshot Example:  
+![Resource Group & VNet](https://via.placeholder.com/600x300?text=Azure+Resource+Group+%26+VNet)  
 
-**1. Setup Domain Controller in Azure**
+---
 
-- Create a Resource Group
-  - Navigate to the Azure Portal and create a new Resource Group.
-- Create a Virtual Network and Subnet
-  - Set up a Virtual Network (VNet) and define a subnet within the VNet.
-- Create the Domain Controller VM
-  - Use the following settings to create a Windows Server 2022 Virtual Machine named `DC-1`:
-  - Username: 
-  - Password: 
-- Set the Domain Controller's NIC Private IP Address to Static
-  - Navigate to the Network Interface Card (NIC) settings for `DC-1` and configure the Private IP Address to be static.
-- Log into the VM and Disable the Windows Firewall
-  - For testing connectivity, disable the Windows Firewall temporarily within `DC-1`.
+### 🔹 2. Deploy the Domain Controller (DC-1)  
+**Execution:**  
+- Create a **Windows Server 2022 VM**:  
+  - VM Name: `DC-1`  
+  - Username: `labuser`  
+  - Password: `Cyberlab123!`  
+  - Attach to `AD-VNet` and `AD-Subnet`.  
+- Configure **Static Private IP**:  
+  - Go to `DC-1` → Networking → NIC settings → Change IP from *Dynamic* to *Static*.  
+- Connect to VM with **Remote Desktop**.  
+- Inside the VM:  
+  - Open *Windows Defender Firewall*.  
+  - Turn it **Off** temporarily (to simplify connectivity testing).  
 
-**2. Setup Client-1 in Azure**
+📸 Screenshot Example:  
+![Domain Controller Setup](https://via.placeholder.com/600x300?text=Domain+Controller+Setup)  
 
-- Create the Client VM
-  - Use the following settings to create a Windows 10 Virtual Machine named `Client-1`:
-  - Username: 
-  - Password: 
-- Attach Client-1 to the Same Region and Virtual Network as DC-1
-  - Ensure `Client-1` is in the same region and Virtual Network as `DC-1`.
-- Set Client-1's DNS Settings to DC-1's Private IP Address
-  - Update the DNS settings for `Client-1` to use `DC-1's` Private IP address.
-- Restart Client-1 from the Azure Portal
-  - After updating the DNS settings, restart the `Client-1` VM from the Azure Portal.
-- Login to Client-1
-  - Use the credentials provided to log in.
-- Test Connectivity to DC-1
-  - Open a command prompt and attempt to ping `DC-1`'s Private IP address.
-  - Verify that the ping succeeds.
-- Verify DNS Settings on Client-1
-  - Open PowerShell on `Client-1` and run the command:
-    - `ipconfig /all`
-  - Confirm that the output for the DNS settings shows `DC-1`'s Private IP address.
+---
 
+### 🔹 3. Deploy the Client Machine (Client-1)  
+**Execution:**  
+- Create a **Windows 10 VM**:  
+  - VM Name: `Client-1`  
+  - Username: `labuser`  
+  - Password: `Cyberlab123!`  
+  - Attach to the same `AD-VNet` and `AD-Subnet`.  
+- Update **DNS settings**:  
+  - Go to `Client-1` → Networking → DNS Servers → Set to **Custom DNS** = `DC-1`’s private IP.  
+  - Save and **Restart** the VM from the Azure Portal.  
+- Connect to `Client-1` with RDP.  
 
+📸 Screenshot Example:  
+![Client VM Setup](https://via.placeholder.com/600x300?text=Client+VM+Setup)  
 
-<h2>Purpose</h2>
-The purpose of this repository is to document and showcase the preparation of an Active Directory infrastructure in Azure. This serves as a reference for implementing a similar setup for learning, testing, or production environments.
+---
 
+### 🔹 4. Verify Connectivity Between Client and DC  
+**Execution:**  
+- On `Client-1`, open **Command Prompt**:  
+  - Run:  
+    ```bash
+    ping <DC-1 Private IP>
+    ```  
+  - Confirm replies are received.  
+- On `Client-1`, open **PowerShell**:  
+  - Run:  
+    ```powershell
+    ipconfig /all
+    ```  
+  - Verify the **DNS Server** is set to `DC-1`’s private IP.  
+
+📸 Screenshot Example:  
+![PowerShell Verification](https://via.placeholder.com/600x300?text=PowerShell+Verification)  
+
+---
+
+## 🎯 Outcome / Learnings  
+By completing this project, I:  
+- Deploy a fully functional **Active Directory environment** inside Azure.  
+- Configure **static IP addressing** and custom DNS settings.  
+- Validate communication between a **Domain Controller and client machine**.  
+- Strengthen skills in **networking, VM management, and directory services**.  
+
+---
