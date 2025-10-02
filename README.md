@@ -81,47 +81,56 @@ The setup includes:
 ---
 
 ### 🔹 3. Deploy the Client Machine (Client-1)  
-**Execution:**  
-- Create a **Windows 10 VM**:  
-  - VM Name: `Client-1`  
+ 
+- Create a Virtual Machine:  
+  - Virtual Machine Name: `Client-1`
+  - Resource Group: `Active-Directory-Lab`
+  - Virtual Network: `Active-Directory-VNet`
+  - Region: `(Same Region as Resource Group & VNet)`
+  - Image: `Windows (Windows 10 Pro)`
+  - Size: `Standard D2s v3 (2 vcpus, 8 GiB memory)`
   - Username: `labuser`  
-  - Password: `Cyberlab123!`  
-  - Attach to the same `AD-VNet` and `AD-Subnet`.  
-- Update **DNS settings**:  
-  - Go to `Client-1` → Networking → DNS Servers → Set to **Custom DNS** = `DC-1`’s private IP.  
-  - Save and **Restart** the VM from the Azure Portal.  
-- Connect to `Client-1` with RDP.  
+  - Password: `*********`
 
-📸 Screenshot Example:  
-![Client VM Setup](https://via.placeholder.com/600x300?text=Client+VM+Setup)  
+![AD client-1 VM info](https://github.com/user-attachments/assets/74abae0a-beae-4de7-9aa8-7c39f8a42da8)
 
 ---
 
-### 🔹 4. Verify Connectivity Between Client and DC  
-**Execution:**  
-- On `Client-1`, open **Command Prompt**:  
-  - Run:  
-    ```bash
-    ping <DC-1 Private IP>
-    ```  
-  - Confirm replies are received.  
-- On `Client-1`, open **PowerShell**:  
-  - Run:  
-    ```powershell
-    ipconfig /all
-    ```  
-  - Verify the **DNS Server** is set to `DC-1`’s private IP.  
+- Update **DNS settings**:  
+  - Go to `Client-1` → Networking → DNS Servers → Set to **Custom DNS** → Put `DC-1`’s private IP (`10.0.0.4` for the sake of this project) 
+  - Save and **Restart** the `Client-1` VM within Azure  
+- Then connect and log into `Client-1` VM with **Remote Desktop**
 
-📸 Screenshot Example:  
-![PowerShell Verification](https://via.placeholder.com/600x300?text=PowerShell+Verification)  
+**Note:** It'll bring you to a Windows OS Home Screen (Not a **`Server Manager Dashbroad`**) once logged in = Successful Windows 10 deployment
+
+![AD client-1 DNS to dc-1](https://github.com/user-attachments/assets/99ca02b3-7a58-4831-a6ae-b340370b1f7b)
+
+![AD client-1 OS home](https://github.com/user-attachments/assets/20141452-a488-48b0-94bf-45ff9f2a9291)
+
+
+---
+
+### 🔹 4. Verify Connectivity Between Client and DC Using Powershell
+
+- On `Client-1`, open **Powershell**:  
+  - Run **`Ping` DC-1 Private IP `(10.0.0.4)`**
+      
+  - Confirm replies are received.  
+
+- On `Client-1`, open **PowerShell**:  
+  - Run **ipconfig /all**
+  - Verify the **DNS Server** is set to `DC-1`’s Private IP 
+
+![AD client-1 ping dc-1](https://github.com/user-attachments/assets/242c6f71-030b-48c6-b2e4-33cbbc3fae17)
+![AD client-1 ipconfig :all DNS info](https://github.com/user-attachments/assets/597e33af-e5ab-42e8-b9f8-9c3b02aae08f)
 
 ---
 
 ## 🎯 Outcome / Learnings  
 By completing this project, I:  
-- Deploy a fully functional **Active Directory environment** inside Azure.  
-- Configure **static IP addressing** and custom DNS settings.  
-- Validate communication between a **Domain Controller and client machine**.  
+- Prepared a fully functional **Active Directory Infrastructure** using Azure  
+- Configured **static IP addressing** and custom DNS settings.  
+- Validated communication between a **Domain Controller and client machine**.  
 - Strengthen skills in **networking, VM management, and directory services**.  
 
 ---
