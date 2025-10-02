@@ -1,10 +1,10 @@
-# 🖥️ Preparing AD Infrastructure Using Azure 
+#  Preparing AD Infrastructure Using Azure 
 
 <p align="center">
   <img src="https://i.imgur.com/pU5A58S.png" alt="Active Directory Logo" width="300"/>
 </p>  
 
-## 📌 Overview  
+##  Overview  
 This project demonstrates how to prepare the proper infrastructure to successfully deploy and configure an **Active Directory environment** using Microsoft Azure.  
 
 The setup includes:  
@@ -14,7 +14,7 @@ The setup includes:
 
 ---
 
-## 🛠️ Technologies Used  
+##  Technologies Used  
 - **Microsoft Azure** (Resource Groups, Virtual Networks, Virtual Machines)  
 - **Windows Server 2022** (Domain Controller)  
 - **Windows 10 (21H2)** (Client Machine)  
@@ -23,7 +23,7 @@ The setup includes:
 
 ---
 
-## ⚙️ Step-by-Step Implementation  
+##  Step-by-Step Implementation  
 
 ### 🔹 1. Create Resource Group & Virtual Network  
 - Log into the [Azure Portal](https://portal.azure.com/).  
@@ -126,7 +126,7 @@ The setup includes:
 
 ---
 
-## 🎯 Outcome / Learnings  
+##  Outcome / Learnings  
 By completing this project, I:  
 - Prepared a fully functional **Active Directory Infrastructure** using Azure  
 - Configured **static IP addressing** and custom DNS settings.  
