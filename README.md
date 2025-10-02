@@ -10,14 +10,14 @@ This project demonstrates how to prepare the proper infrastructure to successful
 The setup includes:  
 - A **Domain Controller** (Windows Server 2022)  
 - A **Client Machine** (Windows 10)  
-- Proper **network, DNS, and connectivity settings** to enable AD functionality  
+- Proper **network, DNS, and connectivity settings** to enable AD Infrastructure functionality  
 
 ---
 
 ##  Technologies Used  
 - **Microsoft Azure** (Resource Groups, Virtual Networks, Virtual Machines)  
-- **Windows Server 2022** (Domain Controller)  
-- **Windows 10 (21H2)** (Client Machine)  
+- **Windows Server 2022**   
+- **Windows 10 (21H2)**   
 - **Active Directory Domain Services (AD DS)**  
 - **PowerShell** & **Remote Desktop**  
 
