@@ -1,11 +1,12 @@
-# 🖥️ Active Directory Deployment in Azure  
+# 🖥️ Preparing AD Infrastructure Using Azure 
 
 <p align="center">
   <img src="https://i.imgur.com/pU5A58S.png" alt="Active Directory Logo" width="300"/>
 </p>  
 
 ## 📌 Overview  
-This project demonstrates how to deploy and configure an **Active Directory environment** in Microsoft Azure.  
+This project demonstrates how to prepare the proper infrastructure to successfully deploy and configure an **Active Directory environment** using Microsoft Azure.  
+
 The setup includes:  
 - A **Domain Controller** (Windows Server 2022)  
 - A **Client Machine** (Windows 10)  
